@@ -1,0 +1,34 @@
+{
+    "configurations": {
+        "default": {
+            "proxy": "https://devnet-api.elrond.com",
+            "chain": "D"
+        }
+    },
+    "contract":{
+        "deploy":{
+            "verbose": true,
+            "bytecode": "output/esdt-nft-marketplace.wasm",
+            "recall-nonce": true,
+            "pem": "../../../../../../PEM/wallet-owner.pem",
+            "gas-limit": 600000000,
+            "arguments": ["01"],
+            "send": true,
+            "outfile": "deploy-testnet.interaction.json",
+            "metadata-payable":true,
+            "chain": "D"
+        },
+        "upgrade":{
+            "verbose": true,
+            "bytecode": "output/esdt-nft-marketplace.wasm",
+            "recall-nonce": true,
+            "pem": "../../../../../../PEM/wallet-owner.pem",
+            "gas-limit": 600000000,
+            "arguments": ["01"],
+            "send": true,
+            "outfile": "deploy-testnet.interaction.json",
+            "metadata-payable":true,
+            "chain": "D"
+        }
+     }
+}

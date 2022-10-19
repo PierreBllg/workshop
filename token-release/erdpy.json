@@ -1,0 +1,32 @@
+{
+    "configurations": {
+        "default": {
+            "proxy": "https://devnet-api.elrond.com",
+            "chainID": "D"
+        }
+    },
+    "contract":{
+        "deploy":{
+            "verbose": true,
+            "bytecode": "output/token-release.wasm",
+            "recall-nonce": true,
+            "pem": "../../wallet.pem",
+            "gas-limit": 600000000,
+            "arguments": ["0x524944452d366534633439"],
+            "send": true,
+            "outfile": "deploy-testnet.interaction.json",
+            "metadata-payable":true
+        },
+        "upgrade":{
+            "verbose": true,
+            "bytecode": "output/token-release.wasm",
+            "recall-nonce": true,
+            "pem": "../../wallet.pem",
+            "gas-limit": 600000000,
+            "arguments": ["0x524944452d366534633439"],
+            "send": true,
+            "outfile": "deploy-testnet.interaction.json",
+            "metadata-payable":true
+        }
+     }
+}
