@@ -1,0 +1,15 @@
+[package]
+name = "factorial"
+version = "0.0.0"
+authors = ["Pierre Bellegueule <pierreb@istari.vision>"]
+edition = "2018"
+publish = false
+
+[lib]
+path = "src/factorial.rs"
+
+[dependencies.elrond-wasm]
+version = "0.35.0"
+
+[dev-dependencies.elrond-wasm-debug]
+version = "0.35.0"

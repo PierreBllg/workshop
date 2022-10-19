@@ -1,0 +1,200 @@
+{
+    "name": "Fatcorial tests",
+    "gasSchedule": "v4",
+    "steps": [
+        {
+            "step": "externalSteps",
+            "path": "deploy-factorial.scen.json"
+        },
+        {
+            "step": "scCall",
+            "tx": {
+                "from": "address:participant1",
+                "to": "sc:factorial",
+                "value": "0",
+                "function": "factorial",
+                "arguments": ["0"],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "status": "0",
+                "message": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+              "address:my_address": {
+                "nonce": "1",
+                "balance": "100",
+                "storage": {}
+              },
+              "address:participant1": {
+                "nonce": "1",
+                "balance": "2",
+                "storage": {}
+              },
+              "address:participant2": {
+                "nonce": "0",
+                "balance": "2",
+                "storage": {}
+              },
+              "sc:factorial": {
+                "nonce": "0",
+                "balance": "99",
+                "code": "file:../output/factorial.wasm"
+              }
+            }
+          },
+          {
+            "step": "scQuery",
+            "txId": "Query Factorial function independently",
+            "comment": "Test if !4 = 24",
+            "tx": {
+                "to": "sc:factorial",
+                "function": "calculate_factorial",
+                "arguments": [
+                    "u32:4"
+                ]
+            },
+            "expect": {
+                "out": [
+                    "24"
+                ],
+                "status": ""
+            }
+        },
+          {
+            "step": "scCall",
+            "tx": {
+                "from": "address:participant2",
+                "to": "sc:factorial",
+                "value": "0",
+                "function": "factorial",
+                "arguments": ["1"],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "status": "0",
+                "message": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+              "address:my_address": {
+                "nonce": "1",
+                "balance": "100",
+                "storage": {}
+              },
+              "address:participant1": {
+                "nonce": "1",
+                "balance": "2",
+                "storage": {}
+              },
+              "address:participant2": {
+                "nonce": "1",
+                "balance": "3",
+                "storage": {}
+              },
+              "sc:factorial": {
+                "nonce": "0",
+                "balance": "98",
+                "code": "file:../output/factorial.wasm"
+              }
+            }
+          },
+          {
+            "step": "scCall",
+            "tx": {
+                "from": "address:my_address",
+                "to": "sc:factorial",
+                "value": "0",
+                "function": "factorial",
+                "arguments": ["4"],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "status": "0",
+                "message": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+              "address:my_address": {
+                "nonce": "2",
+                "balance": "124",
+                "storage": {}
+              },
+              "address:participant1": {
+                "nonce": "1",
+                "balance": "2",
+                "storage": {}
+              },
+              "address:participant2": {
+                "nonce": "1",
+                "balance": "3",
+                "storage": {}
+              },
+              "sc:factorial": {
+                "nonce": "0",
+                "balance": "74",
+                "code": "file:../output/factorial.wasm"
+              }
+            }
+          },
+          {
+            "step": "scCall",
+            "tx": {
+                "from": "address:my_address",
+                "to": "sc:factorial",
+                "value": "0",
+                "function": "factorial",
+                "arguments": ["0"],
+                "gasLimit": "50,000,000",
+                "gasPrice": "0"
+            },
+            "expect": {
+                "status": "0",
+                "message": "",
+                "gas": "*",
+                "refund": "*"
+            }
+        },
+        {
+            "step": "checkState",
+            "accounts": {
+              "address:my_address": {
+                "nonce": "3",
+                "balance": "125",
+                "storage": {}
+              },
+              "address:participant1": {
+                "nonce": "1",
+                "balance": "2",
+                "storage": {}
+              },
+              "address:participant2": {
+                "nonce": "1",
+                "balance": "3",
+                "storage": {}
+              },
+              "sc:factorial": {
+                "nonce": "0",
+                "balance": "73",
+                "code": "file:../output/factorial.wasm"
+              }
+            }
+          }
+    ] 
+}
